@@ -20,11 +20,11 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: Square
+    ClassName: GridManager
     Namespace: ObjectFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
-      partial class Square : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class GridManager : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:43b66642-adfe-44a9-9f11-21fc221c52ce\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class Square\r\n\t{\r\n\r\n\t\tpublic UnityEngine.Tilemaps.Tilemap
-      Tilemap;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:5680cc16-2aa7-43fc-91bf-5b24ca42eba6\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class GridManager\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t}\r\n}\r\n"
