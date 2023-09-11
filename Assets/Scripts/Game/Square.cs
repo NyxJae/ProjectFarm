@@ -1,6 +1,7 @@
 using UnityEngine;
 using QFramework;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 namespace ObjectFarm
 {
@@ -32,6 +33,13 @@ namespace ObjectFarm
 		/// </summary>
 		[Tooltip("鼠标和角色的距离")]
 		public float distanceBetweenMouseAndPlayer = 1f;
+
+		/// <summary>
+		/// tilemap对象
+		/// </summary>
+		[Tooltip("tilemap对象")]
+		public Tilemap tilemap = null;
+
 
 		#endregion
 
@@ -90,9 +98,19 @@ namespace ObjectFarm
 			// 如果距离小于 distanceBetweenMouseAndPlayer
 			if (distance < distanceBetweenMouseAndPlayer)
 			{
-				// 则使用工具
-				Debug.Log("使用工具");
+				// 将鼠标的位置转换为tilemap的位置
+				Vector3Int tilePosition = tilemap.WorldToCell(mousePosition);
+				// 获取tilemap上的tile
+				TileBase tile = tilemap.GetTile(tilePosition);
+				Debug.Log(tile.name);
+				// 如果tile不为空
+				if (tile != null)
+				{
+					// 将tilemap上的tile移除
+					tilemap.SetTile(tilePosition, null);
+				}
 			}
 		}
+
 	}
 }

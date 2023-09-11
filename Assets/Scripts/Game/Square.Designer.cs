@@ -1,4 +1,4 @@
-// Generate Id:74db3169-277e-4f12-a12a-7a06cc3b90ca
+// Generate Id:afc3c046-ce2d-4942-add2-9a0e0b18181b
 using UnityEngine;
 
 namespace ObjectFarm
