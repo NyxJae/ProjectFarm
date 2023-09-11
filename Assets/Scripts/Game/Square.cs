@@ -2,8 +2,6 @@ using UnityEngine;
 using QFramework;
 using UnityEngine.InputSystem;
 
-// 1.请在菜单 编辑器扩展/Namespace Settings 里设置命名空间
-// 2.命名空间更改后，生成代码之后，需要把逻辑代码文件（非 Designer）的命名空间手动更改
 namespace ObjectFarm
 {
 	public partial class Square : ViewController
@@ -12,6 +10,7 @@ namespace ObjectFarm
 		{
 			// Code Here
 		}
+		#region 角色移动相关
 		/// <summary>
 		/// 角色移动速度
 		/// </summary>
@@ -21,18 +20,79 @@ namespace ObjectFarm
 		/// 角色移动方向
 		/// </summary>
 		private Vector2 moveDirection;
+		#endregion
 
-		// 当 Move 动作被触发时，此函数将被调用
-		public void OnMove(InputAction.CallbackContext context)
-		{
-			// 读取移动方向
-			moveDirection = context.ReadValue<Vector2>();
-		}
+		#region 角色互动相关
+		/// <summary>
+		/// 鼠标的世界坐标
+		/// </summary>
+		private Vector2 mouseWorldPosition = Vector2.zero;
+		/// <summary>
+		/// 鼠标和角色的距离
+		/// </summary>
+		[Tooltip("鼠标和角色的距离")]
+		public float distanceBetweenMouseAndPlayer = 1f;
+
+		#endregion
+
 		// 当 FixedMove 动作被触发时，此函数将被调用
 		void FixedUpdate()
 		{
 			// 移动角色
 			transform.Translate(moveDirection * moveSpeed * Time.fixedDeltaTime);
+		}
+
+
+		/// <summary>
+		/// 当 Move 动作被触发时，此函数将被调用
+		/// </summary>
+		/// <param name="context"></param>
+		public void OnMove(InputAction.CallbackContext context)
+		{
+			// 读取移动方向
+			moveDirection = context.ReadValue<Vector2>();
+		}
+
+
+		/// <summary>
+		/// 当 UseTools 动作被触发时(点击鼠标左键时)，此函数将被调用
+		/// </summary>
+		/// <param name="context"></param>
+		public void OnUseTools(InputAction.CallbackContext context)
+		{
+			// 鼠标按下时，使用工具,松开时，不触发
+			if (context.started)
+			{
+				// 使用工具
+				UseTools(transform.position, mouseWorldPosition);
+			}
+		}
+		/// <summary>
+		/// 当 GetMousePosition 动作被触发时(鼠标移动时)，此函数将被调用
+		/// </summary>
+		/// <param name="context"></param>
+		public void GetMousePosition(InputAction.CallbackContext context)
+		{
+			//获取鼠标的坐标,转换为世界坐标
+			mouseWorldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+		}
+
+		/// <summary>
+		/// 使用工具
+		/// </summary>
+		/// <param name="playerPosition">角色的位置和</param>
+		/// <param name="mousePosition">鼠标的位置</param>
+		private void UseTools(Vector2 playerPosition, Vector2 mousePosition)
+		{
+
+			// 计算鼠标和角色的距离
+			float distance = Vector2.Distance(playerPosition, mousePosition);
+			// 如果距离小于 distanceBetweenMouseAndPlayer
+			if (distance < distanceBetweenMouseAndPlayer)
+			{
+				// 则使用工具
+				Debug.Log("使用工具");
+			}
 		}
 	}
 }
