@@ -48,6 +48,8 @@ namespace ObjectFarm
 		{
 			// 移动角色
 			transform.Translate(moveDirection * moveSpeed * Time.fixedDeltaTime);
+			// 显示鼠标所在的地块
+			ShowMousePosition(mouseWorldPosition);
 		}
 
 
@@ -81,8 +83,9 @@ namespace ObjectFarm
 		/// <param name="context"></param>
 		public void GetMousePosition(InputAction.CallbackContext context)
 		{
-			//获取鼠标的坐标,转换为世界坐标
+			// 获取鼠标的坐标,转换为世界坐标
 			mouseWorldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
 		}
 
 		/// <summary>
@@ -92,25 +95,53 @@ namespace ObjectFarm
 		/// <param name="mousePosition">鼠标的位置</param>
 		private void UseTools(Vector2 playerPosition, Vector2 mousePosition)
 		{
-
-			// 计算鼠标和角色的距离
-			float distance = Vector2.Distance(playerPosition, mousePosition);
+			// 将鼠标的世界坐标转换为Tilemap的坐标
+			Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+			// 获取地块的中心点坐标
+			Vector2 cellCenter = (Vector2)tilemap.GetCellCenterWorld(cellPosition);
+			// 计算地块的中心点坐标和角色的距离
+			float distance = Vector2.Distance(playerPosition, cellCenter);
 			// 如果距离小于 distanceBetweenMouseAndPlayer
 			if (distance < distanceBetweenMouseAndPlayer)
 			{
-				// 将鼠标的位置转换为tilemap的位置
-				Vector3Int tilePosition = tilemap.WorldToCell(mousePosition);
 				// 获取tilemap上的tile
-				TileBase tile = tilemap.GetTile(tilePosition);
-				Debug.Log(tile.name);
+				TileBase tile = tilemap.GetTile(cellPosition);
 				// 如果tile不为空
 				if (tile != null)
 				{
 					// 将tilemap上的tile移除
-					tilemap.SetTile(tilePosition, null);
+					tilemap.SetTile(cellPosition, null);
 				}
 			}
 		}
+
+		/// <summary>
+		/// 显示鼠标所在的地块
+		/// </summary>
+		/// <param name="mousePosition">鼠标的世界坐标</param>
+		private void ShowMousePosition(Vector2 mousePosition)
+		{
+			// 将鼠标的世界坐标转换为Tilemap的坐标
+			Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+			// 获取地块的中心点坐标
+			Vector2 cellCenter = (Vector2)tilemap.GetCellCenterWorld(cellPosition);
+			// 获取地块的大小
+			Vector3 cellSize = tilemap.cellSize;
+
+			// 计算矩形框的四个顶点坐标
+			Vector2 bottomLeft = cellCenter - (Vector2)(cellSize * 0.5f);
+			Vector2 topLeft = cellCenter + new Vector2(-cellSize.x, cellSize.y) * 0.5f;
+			Vector2 topRight = (Vector2)cellCenter + (Vector2)(cellSize * 0.5f);
+			Vector2 bottomRight = (Vector2)cellCenter + new Vector2(cellSize.x, -cellSize.y) * 0.5f;
+
+			// 绘制矩形框
+			Debug.DrawLine(bottomLeft, topLeft, Color.red);
+			Debug.DrawLine(topLeft, topRight, Color.red);
+			Debug.DrawLine(topRight, bottomRight, Color.red);
+			Debug.DrawLine(bottomRight, bottomLeft, Color.red);
+
+		}
+
 
 	}
 }
