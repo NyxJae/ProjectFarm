@@ -34,12 +34,6 @@ namespace ObjectFarm
 		[Tooltip("鼠标和角色的距离")]
 		public float distanceBetweenMouseAndPlayer = 1f;
 
-		/// <summary>
-		/// tilemap对象
-		/// </summary>
-		[Tooltip("tilemap对象")]
-		public Tilemap tilemap = null;
-
 
 		#endregion
 
@@ -96,21 +90,21 @@ namespace ObjectFarm
 		private void UseTools(Vector2 playerPosition, Vector2 mousePosition)
 		{
 			// 将鼠标的世界坐标转换为Tilemap的坐标
-			Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+			Vector3Int cellPosition = Tilemap.WorldToCell(mousePosition);
 			// 获取地块的中心点坐标
-			Vector2 cellCenter = (Vector2)tilemap.GetCellCenterWorld(cellPosition);
+			Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
 			// 计算地块的中心点坐标和角色的距离
 			float distance = Vector2.Distance(playerPosition, cellCenter);
 			// 如果距离小于 distanceBetweenMouseAndPlayer
 			if (distance < distanceBetweenMouseAndPlayer)
 			{
-				// 获取tilemap上的tile
-				TileBase tile = tilemap.GetTile(cellPosition);
+				// 获取Tilemap上的tile
+				TileBase tile = Tilemap.GetTile(cellPosition);
 				// 如果tile不为空
 				if (tile != null)
 				{
-					// 将tilemap上的tile移除
-					tilemap.SetTile(cellPosition, null);
+					// 将Tilemap上的tile移除
+					Tilemap.SetTile(cellPosition, null);
 				}
 			}
 		}
@@ -122,11 +116,11 @@ namespace ObjectFarm
 		private void ShowMousePosition(Vector2 mousePosition)
 		{
 			// 将鼠标的世界坐标转换为Tilemap的坐标
-			Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+			Vector3Int cellPosition = Tilemap.WorldToCell(mousePosition);
 			// 获取地块的中心点坐标
-			Vector2 cellCenter = (Vector2)tilemap.GetCellCenterWorld(cellPosition);
+			Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
 			// 获取地块的大小
-			Vector3 cellSize = tilemap.cellSize;
+			Vector3 cellSize = Tilemap.cellSize;
 
 			// 计算矩形框的四个顶点坐标
 			Vector2 bottomLeft = cellCenter - (Vector2)(cellSize * 0.5f);

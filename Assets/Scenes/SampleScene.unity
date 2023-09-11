@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 114265189}
   - component: {fileID: 114265187}
   - component: {fileID: 114265186}
+  - component: {fileID: 114265191}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -372,6 +373,8 @@ MonoBehaviour:
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
   moveSpeed: 5
+  distanceBetweenMouseAndPlayer: 1
+  Tilemap: {fileID: 4897238}
 --- !u!114 &114265187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +416,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 17bdcb46-8269-4fb2-a248-e81fe176d3cf
     m_ActionName: player/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f467a41-36e1-4e13-881c-cb16fa712993
+    m_ActionName: player/UseTools[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2758e3a-5253-47cd-b18c-339efd2ccec3
+    m_ActionName: player/MousePosition[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: player
@@ -485,6 +496,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114265191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114265185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411e729afed24c62a04e2b99d9122e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Binds:
+  - MemberName: Tilemap
+    Object: {fileID: 4897238}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

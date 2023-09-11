@@ -25,5 +25,6 @@ MonoBehaviour:
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
       partial class Square : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:afc3c046-ce2d-4942-add2-9a0e0b18181b\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class Square\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:43b66642-adfe-44a9-9f11-21fc221c52ce\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class Square\r\n\t{\r\n\r\n\t\tpublic UnityEngine.Tilemaps.Tilemap
+      Tilemap;\r\n\r\n\t}\r\n}\r\n"
