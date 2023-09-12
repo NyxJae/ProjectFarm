@@ -20,7 +20,7 @@
  *
  * Community
  *  QQ Group: 623597263
- * Latest Update: 2023.9.2 23:00 add comparer to BindableProperty for reduce gc
+ * Latest Update: 2023.9.12 14:42 revert operator override
  ****************************************************************************/
 
 using System;
@@ -640,6 +640,9 @@ namespace QFramework
             return Register(Action);
             void Action(T _) => onEvent();
         }
+        
+        public static implicit operator T(BindableProperty<T> property) => property.Value;
+        public override string ToString() => Value.ToString();
     }
 
     internal class ComparerAutoRegister

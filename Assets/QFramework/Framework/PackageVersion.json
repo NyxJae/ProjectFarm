@@ -1,6 +1,6 @@
 {
     "Id": "",
-    "Version": "v1.0.88",
+    "Version": "v1.0.89",
     "Type": 0,
     "AccessRight": 0,
     "DownloadUrl": "",
@@ -11,10 +11,10 @@
     ],
     "DocUrl": "https://liangxiegame.com",
     "Readme": {
-        "version": "v1.0.88",
-        "content": "删除掉 Range 的歧义",
+        "version": "v1.0.89",
+        "content": "AudioKit 增加 PlaySoundMode 可以控制声音播放的模式\nQFramework: BindableProperty 重新支持运算符重载",
         "author": "liangxie",
-        "date": "2023 年 09 月 03 日 19:05",
+        "date": "2023 年 09 月 12 日 15:21",
         "PackageId": ""
     }
 }

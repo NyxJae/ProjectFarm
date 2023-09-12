@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Land
+    uniqueID: 3434293915
+    locked: 0
+  - name: Sprites
+    uniqueID: 671907995
+    locked: 0

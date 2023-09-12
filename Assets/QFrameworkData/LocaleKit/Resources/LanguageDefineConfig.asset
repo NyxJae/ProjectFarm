@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824e9ce8d0ab4fee90ebfb81f09cdeaf, type: 3}
-  m_Name: Setting
+  m_Script: {fileID: 11500000, guid: 25c0b01ca2d340ebbf1efa046a61b7a9, type: 3}
+  m_Name: LanguageDefineConfig
   m_EditorClassIdentifier: 
-  Namespace: ObjectFarm
-  ScriptDir: Assets/Scripts/GameController
-  PrefabDir: Assets/Art/Prefab
+  LanguageDefines:
+  - Language: 10
+  - Language: 40

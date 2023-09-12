@@ -1,9 +1,9 @@
-// Generate Id:5680cc16-2aa7-43fc-91bf-5b24ca42eba6
+// Generate Id:8ec3282b-472e-4ad0-b70a-21a922daa4ba
 using UnityEngine;
 
 namespace ObjectFarm
 {
-	public partial class GridManager
+	public partial class PlayerController
 	{
 
 		public UnityEngine.Tilemaps.Tilemap Tilemap;
