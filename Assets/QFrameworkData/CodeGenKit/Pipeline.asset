@@ -20,11 +20,12 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: GridManager
+    ClassName: PlayerManager
     Namespace: ObjectFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
-      partial class GridManager : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class PlayerManager : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:5680cc16-2aa7-43fc-91bf-5b24ca42eba6\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class GridManager\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:85b45ed3-db47-4e62-b35c-0fa6efe9fa2d\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class PlayerManager\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t\tpublic ObjectFarm.GridManager
+      GridManager;\r\n\r\n\t}\r\n}\r\n"

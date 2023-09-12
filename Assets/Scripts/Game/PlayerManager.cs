@@ -98,14 +98,17 @@ namespace ObjectFarm
 			// 如果距离小于 distanceBetweenMouseAndPlayer
 			if (distance < distanceBetweenMouseAndPlayer)
 			{
-				// 获取Tilemap上的tile
-				TileBase tile = Tilemap.GetTile(cellPosition);
-				// 如果tile不为空
-				if (tile != null)
-				{
-					// 将Tilemap上的tile移除
-					Tilemap.SetTile(cellPosition, null);
+				// 如果 cellPosition.x, cellPosition.y 在10*10的范围内
+				if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
+				{   // 获取Tilemap上的tile
+					TileBase tile = Tilemap.GetTile(cellPosition);
+					GridManager.Grids[cellPosition.x, cellPosition.y] = new GridData();
+					// 绘制地块
+					Tilemap.SetTile(cellPosition, GridManager.brush);
+					return;
 				}
+
+
 			}
 		}
 

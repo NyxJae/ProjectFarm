@@ -1,4 +1,4 @@
-// Generate Id:43b66642-adfe-44a9-9f11-21fc221c52ce
+// Generate Id:85b45ed3-db47-4e62-b35c-0fa6efe9fa2d
 using UnityEngine;
 
 namespace ObjectFarm
@@ -7,6 +7,8 @@ namespace ObjectFarm
 	{
 
 		public UnityEngine.Tilemaps.Tilemap Tilemap;
+
+		public ObjectFarm.GridManager GridManager;
 
 	}
 }

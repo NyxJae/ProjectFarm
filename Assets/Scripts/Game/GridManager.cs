@@ -10,7 +10,14 @@ namespace ObjectFarm
 		/// <summary>
 		/// 地块数据
 		/// </summary>
-		private EasyGrid<GridData> grids = new EasyGrid<GridData>(10, 10);
+		private EasyGrid<GridData> mGrids = new EasyGrid<GridData>(10, 10);
+
+
+		public EasyGrid<GridData> Grids
+		{
+			get { return mGrids; }
+		}
+
 
 		/// <summary>
 		/// 笔刷 生成地块用
@@ -22,17 +29,12 @@ namespace ObjectFarm
 
 		void Start()
 		{
-			// 填充 grids 的数据
-			grids.Fill(new GridData());
-			// 生成地块
-			grids.ForEach((x, y, gridData) =>
-			{
-				if (gridData != null)
-				{
-					// 生成地块
-					Tilemap.SetTile(new Vector3Int(x, y), brush);
-				}
-			});
+
+		}
+
+		private void Update()
+		{
+
 		}
 	}
 }
