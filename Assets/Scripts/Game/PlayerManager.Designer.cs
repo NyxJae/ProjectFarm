@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ObjectFarm
 {
-	public partial class Square
+	public partial class PlayerManager
 	{
 
 		public UnityEngine.Tilemaps.Tilemap Tilemap;

@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace ObjectFarm
 {
-	public partial class Square : ViewController
+	public partial class PlayerManager : ViewController
 	{
 		void Start()
 		{
