@@ -140,12 +140,11 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
+
                     EasyGrid<GridData> grid = mModel.Grids.Value;
                     grid[cellPosition.x, cellPosition.y] = new GridData();
-                    mModel.Grids.Value = null;  // 设置为null或其他不同的值
                     mModel.Grids.Value = grid;  // 重新设置以触发事件
                     Debug.Log("使用工具");
-
 
                 }
 
