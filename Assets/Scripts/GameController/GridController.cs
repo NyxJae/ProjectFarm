@@ -48,6 +48,7 @@ namespace ObjectFarm
             // 当mModel.Grids.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
             mModel.Grids.Register(newValue =>
             {
+                Debug.Log("触发了地图绘制");
                 if (newValue != null)
                 {
                     mModel.Grids.Value.ForEach((x, y, gridData) =>
