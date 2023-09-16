@@ -125,6 +125,40 @@ namespace ObjectFarm
 
         }
 
+
+
+        /// <summary>
+        /// 当 TestTools 动作被触发时，此函数将被调用
+        /// </summary>
+        /// <param name="context"></param>
+        public void OnTestTools(InputAction.CallbackContext context)
+        {
+            // 按下时触发，松开时不触发
+            if (context.started)
+            {
+                // 获取触发该动作的控件的名称
+                string controlName = context.control.name;
+
+                // 如果是 键盘的 J 键
+                if (controlName == "j")
+                {
+                    // 消除地块
+                    RemoveGrid(transform.position, mouseWorldPosition);
+                }
+                // 如果是 键盘的 K 键
+                else if (controlName == "k")
+                {
+                    Debug.Log("K key was pressed!");
+                }
+                // 如果是 键盘的 L 键
+                else if (controlName == "l")
+                {
+                    Debug.Log("L key was pressed!");
+                }
+            }
+        }
+
+
         #endregion
 
 
@@ -162,6 +196,38 @@ namespace ObjectFarm
 
 
         /// <summary>
+        /// 消除地块
+        /// </summary>
+        /// <param name="playerPositio"></param>
+        /// <param name="mousePosition"></param>
+        private void RemoveGrid(Vector2 playerPositio, Vector2 mousePosition)
+        {
+            // 将鼠标的世界坐标转换为Tilemap的坐标
+            Vector3Int cellPosition = Tilemap.WorldToCell(mousePosition);
+            // 获取地块的中心点坐标
+            Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
+            // 计算地块的中心点坐标和角色的距离
+            float distance = Vector2.Distance(playerPositio, cellCenter);
+            // 如果距离小于 distanceBetweenMouseAndPlayer
+            if (distance < distanceBetweenMouseAndPlayer)
+            {
+                // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
+                if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
+                {
+                    //TODO:恢复地块至泥土
+                    grid[cellPosition.x, cellPosition.y] = null;
+                    mModel.Grids.Value = grid;  // 重新设置以触发事件
+                    Debug.Log("消除地块");
+
+                }
+            }
+        }
+
+
+
+
+
+        /// <summary>
         /// 显示鼠标所在的地块
         /// </summary>
         /// <param name="mousePosition">鼠标的世界坐标</param>
@@ -178,7 +244,10 @@ namespace ObjectFarm
         }
 
 
-
+        /// <summary>
+        /// 控制器接口实现
+        /// </summary>
+        /// <returns></returns>
         public IArchitecture GetArchitecture()
         {
             return ObjectFarmArchitecture.Interface;
@@ -186,7 +255,6 @@ namespace ObjectFarm
 
 
         #endregion
-
     }
 
 

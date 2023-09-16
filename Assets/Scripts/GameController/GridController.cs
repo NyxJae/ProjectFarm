@@ -54,12 +54,18 @@ namespace ObjectFarm
                     mModel.Grids.Value.ForEach((x, y, gridData) =>
                     {
                         // 如果地块数据不为空
-                        if (gridData != null)
+                        if (gridData == null)
+                        {
+                            // 清除地块
+                            Tilemap.SetTile(new Vector3Int(x, y, 0), null);
+                        }
+                        else if (gridData != null)
                         {
                             // 生成地块
                             Tilemap.SetTile(new Vector3Int(x, y, 0), brush);
 
                         }
+
                     });
                 }
 
