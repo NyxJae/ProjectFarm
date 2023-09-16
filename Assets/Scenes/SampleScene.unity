@@ -308,14 +308,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Namespace: ObjectFarm
-  ScriptName: PlayerManager
-  ScriptsFolder: Assets/Scripts/Game
+  ScriptName: PlayerController
+  ScriptsFolder: Assets/Scripts/GameController
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
   moveSpeed: 5
   distanceBetweenMouseAndPlayer: 1.55
   Tilemap: {fileID: 4897238}
-  GridManager: {fileID: 1074261673}
 --- !u!114 &114265187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,8 +787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Namespace: ObjectFarm
-  ScriptName: GridManager
-  ScriptsFolder: Assets/Scripts/Game
+  ScriptName: GridController
+  ScriptsFolder: Assets/Scripts/GameController
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
   brush: {fileID: 11400000, guid: 5f53b2f06d7413c4290a0e04db45f962, type: 2}

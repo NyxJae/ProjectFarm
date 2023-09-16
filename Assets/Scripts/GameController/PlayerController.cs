@@ -39,6 +39,12 @@ namespace ObjectFarm
         [Tooltip("鼠标和角色的距离")]
         public float distanceBetweenMouseAndPlayer = 1f;
 
+        /// <summary>
+        /// 地块的数据
+        /// </summary>
+        private EasyGrid<GridData> grid = null;
+
+
         #endregion
 
         #region 系统相关字段
@@ -47,6 +53,8 @@ namespace ObjectFarm
         /// model层
         /// </summary>
         private ObjectFarmModel mModel = null;
+
+
 
         #endregion
 
@@ -58,6 +66,8 @@ namespace ObjectFarm
         {
             // 获取model层
             mModel = this.GetModel<ObjectFarmModel>();
+            // 获取地块数据
+            grid = mModel.Grids.Value;
 
         }
 
@@ -140,8 +150,6 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-
-                    EasyGrid<GridData> grid = mModel.Grids.Value;
                     grid[cellPosition.x, cellPosition.y] = new GridData();
                     mModel.Grids.Value = grid;  // 重新设置以触发事件
                     Debug.Log("使用工具");

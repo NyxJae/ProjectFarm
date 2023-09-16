@@ -640,7 +640,7 @@ namespace QFramework
             return Register(Action);
             void Action(T _) => onEvent();
         }
-        
+
         public static implicit operator T(BindableProperty<T> property) => property.Value;
         public override string ToString() => Value.ToString();
     }
