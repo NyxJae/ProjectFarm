@@ -148,7 +148,8 @@ namespace ObjectFarm
                 // 如果是 键盘的 K 键
                 else if (controlName == "k")
                 {
-                    Debug.Log("K key was pressed!");
+                    // 种植植物
+                    Plant(transform.position, mouseWorldPosition);
                 }
                 // 如果是 键盘的 L 键
                 else if (controlName == "l")
@@ -219,6 +220,36 @@ namespace ObjectFarm
                     mModel.Grids.Value = grid;  // 重新设置以触发事件
                     Debug.Log("消除地块");
 
+                }
+            }
+        }
+
+
+        // 种植植物
+        private void Plant(Vector2 playerPosition, Vector2 mousePosition)
+        {
+            // 将鼠标的世界坐标转换为Tilemap的坐标
+            Vector3Int cellPosition = Tilemap.WorldToCell(mousePosition);
+            // 获取地块的中心点坐标
+            Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
+            // 计算地块的中心点坐标和角色的距离
+            float distance = Vector2.Distance(playerPosition, cellCenter);
+            // 如果距离小于 distanceBetweenMouseAndPlayer
+            if (distance < distanceBetweenMouseAndPlayer)
+            {
+                // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
+                if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
+                {
+                    // 如果 cellPosition.x, cellPosition.y 的地块是泥土
+                    if (grid[cellPosition.x, cellPosition.y] != null)
+                    {
+                        // rescontroller 生成种子,链式方法 
+                        // 种子的位置是 cellCenter
+                        // 种子的父物体是 Tilemap.transform
+                        ResController.Instance.Seed.Instantiate().Position(cellCenter).Parent(Tilemap.transform);
+
+
+                    }
                 }
             }
         }
