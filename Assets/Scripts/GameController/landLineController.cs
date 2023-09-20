@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace ObjectFarm
 {
-    public partial class landLineController : ViewController
+    public partial class landLineController : ViewController, IController
     {
         // 世界坐标
         private Vector2 mouseWorldPosition = Vector2.zero;
@@ -32,6 +32,11 @@ namespace ObjectFarm
             Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
             // 移动角色
             transform.position = cellCenter;
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return ObjectFarmArchitecture.Interface;
         }
     }
 }

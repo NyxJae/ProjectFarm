@@ -20,10 +20,13 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/GameController
-    ClassName: landLineController
+    ClassName: GridController
     Namespace: ObjectFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
-      partial class landLineController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class GridController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:4c42b5b2-dcf5-4928-9eb0-04ee382192a0\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class landLineController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:ddf24a76-916e-409f-a58e-4739b5091166\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class GridController\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t\tpublic UnityEngine.Tilemaps.Tile
+      land_moist;\r\n\r\n\t\tpublic UnityEngine.Tilemaps.Tile land_Reclaimed;\r\n\r\n\t\tpublic
+      UnityEngine.Tilemaps.Tile land_soil;\r\n\r\n\t}\r\n}\r\n"

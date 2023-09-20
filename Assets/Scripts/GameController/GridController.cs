@@ -2,7 +2,7 @@ using System.Globalization;
 using UnityEngine;
 using QFramework;
 using UnityEngine.Tilemaps;
-
+using System.Collections.Generic;
 
 namespace ObjectFarm
 {
@@ -11,22 +11,10 @@ namespace ObjectFarm
 
 
 
-        #region  tilemap相关字段
-
-        /// <summary>
-        /// 笔刷 生成地块用
-        /// </summary>
-        [Tooltip("笔刷 生成地块用")]
-        public Tile brush = null;
-
-
         public IArchitecture GetArchitecture()
         {
             return ObjectFarmArchitecture.Interface;
         }
-
-        #endregion
-
 
 
         #region 系统相关字段
@@ -45,34 +33,60 @@ namespace ObjectFarm
         {
             // 获取model层
             mModel = this.GetModel<ObjectFarmModel>();
-            // 当mModel.Grids.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
+            // 注册事件当mModel.Grids.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
             mModel.Grids.Register(newValue =>
             {
-                Debug.Log("触发了地图绘制");
                 if (newValue != null)
                 {
-                    mModel.Grids.Value.ForEach((x, y, gridData) =>
-                    {
-                        // 如果地块数据不为空
-                        if (gridData == null)
-                        {
-                            // 清除地块
-                            Tilemap.SetTile(new Vector3Int(x, y, 0), null);
-                        }
-                        else if (gridData != null)
-                        {
-                            // 生成地块
-                            Tilemap.SetTile(new Vector3Int(x, y, 0), brush);
-
-                        }
-
-                    });
+                    // 绘制地块
+                    DrawTile();
                 }
 
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            // 绘制地块
+            DrawTile();
+
+        }
+
+
+
+        /// <summary>
+        /// 绘制地块
+        /// </summary>
+        private void DrawTile()
+        {
+            mModel.Grids.Value.ForEach((x, y, gridData) =>
+            {
+                // 如果地块数据不为空
+                if (gridData != null)
+                {
+                    // 如果地块数据的状态为泥土
+                    if (gridData.state == GridData.State.Soil)
+                    {
+                        // 绘制泥土
+                        Tilemap.SetTile(new Vector3Int(x, y, 0), land_soil);
+                    }
+                    // 如果地块数据的状态为湿润
+                    else if (gridData.state == GridData.State.Moist)
+                    {
+                        // 绘制湿润
+                        Tilemap.SetTile(new Vector3Int(x, y, 0), land_moist);
+                    }
+                    // 如果地块数据的状态为开垦
+                    else if (gridData.state == GridData.State.Reclaimed)
+                    {
+                        // 绘制开垦
+                        Tilemap.SetTile(new Vector3Int(x, y, 0), land_Reclaimed);
+                    }
+
+                }
+
+            });
         }
 
         #endregion
+
+
 
     }
 }

@@ -315,6 +315,7 @@ MonoBehaviour:
   moveSpeed: 5
   distanceBetweenMouseAndPlayer: 1.55
   Tilemap: {fileID: 4897238}
+  GridManager: {fileID: 0}
 --- !u!114 &114265187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,37 +494,6 @@ MonoBehaviour:
     Object: {fileID: 4897238}
   - MemberName: GridManager
     Object: {fileID: 1074261673}
---- !u!1 &210930069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 210930070}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &210930070
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210930069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &244492211
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +529,7 @@ MonoBehaviour:
   ScriptsFolder: Assets/Scripts/GameController
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
-  seedPrefab: {fileID: 0}
+  Seed: {fileID: 4800178128174419992, guid: f4723fe881f92c748abda2a1851251ff, type: 3}
 --- !u!114 &244492213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,7 +790,7 @@ GameObject:
   - component: {fileID: 1074261674}
   - component: {fileID: 1074261673}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +822,7 @@ Transform:
   m_Children:
   - {fileID: 4897236}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074261673
 MonoBehaviour:
@@ -871,8 +841,10 @@ MonoBehaviour:
   ScriptsFolder: Assets/Scripts/GameController
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
-  brush: {fileID: 11400000, guid: 5f53b2f06d7413c4290a0e04db45f962, type: 2}
   Tilemap: {fileID: 4897238}
+  land_moist: {fileID: 11400000, guid: 20cb109c14abfb246bc235f7ee601817, type: 2}
+  land_Reclaimed: {fileID: 11400000, guid: 1cb176806a8e1e44f8f4f3a34d836537, type: 2}
+  land_soil: {fileID: 11400000, guid: 5f53b2f06d7413c4290a0e04db45f962, type: 2}
 --- !u!114 &1074261674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,3 +860,70 @@ MonoBehaviour:
   Binds:
   - MemberName: Tilemap
     Object: {fileID: 4897238}
+  - MemberName: land_moist
+    Object: {fileID: 11400000, guid: 20cb109c14abfb246bc235f7ee601817, type: 2}
+  - MemberName: land_Reclaimed
+    Object: {fileID: 11400000, guid: 1cb176806a8e1e44f8f4f3a34d836537, type: 2}
+  - MemberName: land_soil
+    Object: {fileID: 11400000, guid: 5f53b2f06d7413c4290a0e04db45f962, type: 2}
+--- !u!1001 &2355930300589219013
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3335806757728713135, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_Name
+      value: landLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516819365183423623, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23c632bf79e38764b9322cc330f08f38, type: 3}

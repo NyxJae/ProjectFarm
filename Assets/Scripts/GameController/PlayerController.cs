@@ -154,7 +154,8 @@ namespace ObjectFarm
                 // 如果是 键盘的 L 键
                 else if (controlName == "l")
                 {
-                    Debug.Log("L key was pressed!");
+                    // 浇水
+                    Water(transform.position, mouseWorldPosition);
                 }
             }
         }
@@ -167,7 +168,7 @@ namespace ObjectFarm
         #region 私有方法 
 
         /// <summary>
-        /// 使用工具
+        /// 开垦地块
         /// </summary>
         /// <param name="playerPosition">角色的位置和</param>
         /// <param name="mousePosition">鼠标的位置</param>
@@ -185,9 +186,12 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-                    grid[cellPosition.x, cellPosition.y] = new GridData();
-                    mModel.Grids.Value = grid;  // 重新设置以触发事件
-                    Debug.Log("使用工具");
+                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Soil)
+                    {
+                        grid[cellPosition.x, cellPosition.y].state = GridData.State.Reclaimed;
+                        mModel.Grids.Value = grid;  // 重新设置以触发事件
+                    }
+
 
                 }
 
@@ -197,7 +201,7 @@ namespace ObjectFarm
 
 
         /// <summary>
-        /// 消除地块
+        /// 恢复地块
         /// </summary>
         /// <param name="playerPositio"></param>
         /// <param name="mousePosition"></param>
@@ -215,17 +219,19 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-                    //TODO:恢复地块至泥土
-                    grid[cellPosition.x, cellPosition.y] = null;
+                    grid[cellPosition.x, cellPosition.y].state = GridData.State.Soil;
                     mModel.Grids.Value = grid;  // 重新设置以触发事件
-                    Debug.Log("消除地块");
 
                 }
             }
         }
 
 
-        // 种植植物
+        /// <summary>
+        /// 种植植物
+        /// </summary>
+        /// <param name="playerPosition"></param>
+        /// <param name="mousePosition"></param>
         private void Plant(Vector2 playerPosition, Vector2 mousePosition)
         {
             // 将鼠标的世界坐标转换为Tilemap的坐标
@@ -240,14 +246,46 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-                    // 如果 cellPosition.x, cellPosition.y 的地块是泥土
-                    if (grid[cellPosition.x, cellPosition.y] != null)
+                    // 如果 cellPosition.x, cellPosition.y 的地块是已开垦或者湿润
+                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Reclaimed || grid[cellPosition.x, cellPosition.y].state == GridData.State.Moist)
                     {
                         // rescontroller 生成种子,链式方法 
                         // 种子的位置是 cellCenter
                         // 种子的父物体是 Tilemap.transform
                         ResController.Instance.Seed.Instantiate().Position(cellCenter).Parent(Tilemap.transform);
 
+                    }
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// 浇水
+        /// </summary>
+        /// <param name="playerPosition"></param>
+        /// <param name="mousePosition"></param>
+        private void Water(Vector2 playerPosition, Vector2 mousePosition)
+        {
+            // 将鼠标的世界坐标转换为Tilemap的坐标
+            Vector3Int cellPosition = Tilemap.WorldToCell(mousePosition);
+            // 获取地块的中心点坐标
+            Vector2 cellCenter = (Vector2)Tilemap.GetCellCenterWorld(cellPosition);
+            // 计算地块的中心点坐标和角色的距离
+            float distance = Vector2.Distance(playerPosition, cellCenter);
+            // 如果距离小于 distanceBetweenMouseAndPlayer
+            if (distance < distanceBetweenMouseAndPlayer)
+            {
+                // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
+                if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
+                {
+                    // 如果 cellPosition.x, cellPosition.y 的地块是泥土
+                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Reclaimed)
+                    {
+                        // 设置地块的状态为 Moist
+                        grid[cellPosition.x, cellPosition.y].state = GridData.State.Moist;
+                        mModel.Grids.Value = grid;  // 重新设置以触发事件
 
                     }
                 }
