@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8851834350059985613}
   - component: {fileID: 8010372300030931988}
+  - component: {fileID: 7545431871008308716}
+  - component: {fileID: 5987590747246625114}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8010372300030931988
 SpriteRenderer:
@@ -84,3 +86,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7545431871008308716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800178128174419992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411e729afed24c62a04e2b99d9122e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Binds:
+  - MemberName: seed
+    Object: {fileID: 3124949146848436715, guid: 39cefd3bd420073468fb53d8edf1e697, type: 3}
+  - MemberName: seedling
+    Object: {fileID: 1762424232269057979, guid: 7c1245c92d46bba449547f0f5451ef40, type: 3}
+  - MemberName: SeedSpriteRenderer
+    Object: {fileID: 8010372300030931988}
+  - MemberName: mature
+    Object: {fileID: 1615920084052777933, guid: ef240a33107c17f4582e2ce5021d671e, type: 3}
+--- !u!114 &5987590747246625114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800178128174419992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94def2fcdda76804ab6f8a6ebd08a03c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Namespace: ObjectFarm
+  ScriptName: SeedController
+  ScriptsFolder: Assets/Scripts/GameController
+  GeneratePrefab: 0
+  PrefabFolder: Assets/Art/Prefab
+  SeedlingTime: 1
+  MatureTime: 4
+  seed: {fileID: 3124949146848436715, guid: 39cefd3bd420073468fb53d8edf1e697, type: 3}
+  seedling: {fileID: 1762424232269057979, guid: 7c1245c92d46bba449547f0f5451ef40, type: 3}
+  SeedSpriteRenderer: {fileID: 8010372300030931988}
+  mature: {fileID: 1615920084052777933, guid: ef240a33107c17f4582e2ce5021d671e, type: 3}

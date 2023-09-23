@@ -82,6 +82,14 @@ namespace ObjectFarm
             ShowMousePosition(mouseWorldPosition);
         }
 
+        // gui更新
+        private void OnGUI()
+        {
+            // 显示日期
+            GUI.Label(new Rect(0, 0, 200, 200), mModel.Date.Value.ToString("yyyy-MM-dd"));
+        }
+
+
         #endregion
 
 
@@ -157,6 +165,12 @@ namespace ObjectFarm
                     // 浇水
                     Water(transform.position, mouseWorldPosition);
                 }
+                // 如果是 键盘的 P 键
+                else if (controlName == "p")
+                {
+                    // 过一天
+                    PassOneDay();
+                }
             }
         }
 
@@ -186,9 +200,9 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Soil)
+                    if (grid[cellPosition.x, cellPosition.y].landState == GridData.LandState.Soil)
                     {
-                        grid[cellPosition.x, cellPosition.y].state = GridData.State.Reclaimed;
+                        grid[cellPosition.x, cellPosition.y].landState = GridData.LandState.Reclaimed;
                         mModel.Grids.Value = grid;  // 重新设置以触发事件
                     }
 
@@ -219,7 +233,7 @@ namespace ObjectFarm
                 // 如果 cellPosition.x, cellPosition.y 在10*10的范围内
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
-                    grid[cellPosition.x, cellPosition.y].state = GridData.State.Soil;
+                    grid[cellPosition.x, cellPosition.y].landState = GridData.LandState.Soil;
                     mModel.Grids.Value = grid;  // 重新设置以触发事件
 
                 }
@@ -247,7 +261,7 @@ namespace ObjectFarm
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
                     // 如果 cellPosition.x, cellPosition.y 的地块是已开垦或者湿润
-                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Reclaimed || grid[cellPosition.x, cellPosition.y].state == GridData.State.Moist)
+                    if (grid[cellPosition.x, cellPosition.y].landState == GridData.LandState.Reclaimed || grid[cellPosition.x, cellPosition.y].landState == GridData.LandState.Moist)
                     {
                         // rescontroller 生成种子,链式方法 
                         // 种子的位置是 cellCenter
@@ -281,10 +295,10 @@ namespace ObjectFarm
                 if (cellPosition.x >= 0 && cellPosition.x < 10 && cellPosition.y >= 0 && cellPosition.y < 10)
                 {
                     // 如果 cellPosition.x, cellPosition.y 的地块是泥土
-                    if (grid[cellPosition.x, cellPosition.y].state == GridData.State.Reclaimed)
+                    if (grid[cellPosition.x, cellPosition.y].landState == GridData.LandState.Reclaimed)
                     {
                         // 设置地块的状态为 Moist
-                        grid[cellPosition.x, cellPosition.y].state = GridData.State.Moist;
+                        grid[cellPosition.x, cellPosition.y].landState = GridData.LandState.Moist;
                         mModel.Grids.Value = grid;  // 重新设置以触发事件
 
                     }
@@ -292,6 +306,12 @@ namespace ObjectFarm
             }
         }
 
+        // 过一天
+        private void PassOneDay()
+        {
+            // 日期加一天
+            mModel.Date.Value = mModel.Date.Value.AddDays(1);
+        }
 
 
 

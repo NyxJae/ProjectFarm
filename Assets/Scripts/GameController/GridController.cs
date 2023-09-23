@@ -61,19 +61,19 @@ namespace ObjectFarm
                 if (gridData != null)
                 {
                     // 如果地块数据的状态为泥土
-                    if (gridData.state == GridData.State.Soil)
+                    if (gridData.landState == GridData.LandState.Soil)
                     {
                         // 绘制泥土
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_soil);
                     }
                     // 如果地块数据的状态为湿润
-                    else if (gridData.state == GridData.State.Moist)
+                    else if (gridData.landState == GridData.LandState.Moist)
                     {
                         // 绘制湿润
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_moist);
                     }
                     // 如果地块数据的状态为开垦
-                    else if (gridData.state == GridData.State.Reclaimed)
+                    else if (gridData.landState == GridData.LandState.Reclaimed)
                     {
                         // 绘制开垦
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_Reclaimed);
