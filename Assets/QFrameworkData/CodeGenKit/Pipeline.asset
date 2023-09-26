@@ -20,13 +20,11 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/GameController
-    ClassName: SeedController
+    ClassName: ResController
     Namespace: ObjectFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
-      partial class SeedController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class ResController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:f59a7e3e-ae19-48a1-bfa4-15c6dbaf281c\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class SeedController\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.Sprite seed;\r\n\r\n\t\tpublic UnityEngine.Sprite seedling;\r\n\r\n\t\tpublic
-      UnityEngine.SpriteRenderer SeedSpriteRenderer;\r\n\r\n\t\tpublic UnityEngine.Sprite
-      mature;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:98300762-d591-45d2-a607-cf2684d6f782\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class ResController\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.GameObject Plant;\r\n\r\n\t}\r\n}\r\n"

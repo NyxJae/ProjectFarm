@@ -10,8 +10,17 @@ namespace ObjectFarm
         /// </summary>
         public enum LandState
         {
+            /// <summary>
+            /// 潮湿的
+            /// </summary>
             Moist,
+            /// <summary>
+            /// 开垦的
+            /// </summary>
             Reclaimed,
+            /// <summary>
+            /// 泥土未开肯
+            /// </summary>
             Soil
         }
         /// <summary>
@@ -24,9 +33,17 @@ namespace ObjectFarm
         /// </summary>
         public enum PlantState
         {
+            /// <summary>
+            /// 未种植
+            /// </summary>
             None,
+            /// <summary>
+            /// 种子
+            /// </summary>
             Seed,
-            tree,
+            /// <summary>
+            /// 枯萎
+            /// </summary>
             Dead
         }
 

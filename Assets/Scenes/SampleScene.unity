@@ -529,7 +529,7 @@ MonoBehaviour:
   ScriptsFolder: Assets/Scripts/GameController
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
-  Seed: {fileID: 4800178128174419992, guid: f4723fe881f92c748abda2a1851251ff, type: 3}
+  Plant: {fileID: 7098921518429542307, guid: c4c158b1a2fa6f048ae897816b1c1415, type: 3}
 --- !u!114 &244492213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,7 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e729afed24c62a04e2b99d9122e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Binds: []
+  Binds:
+  - MemberName: Plant
+    Object: {fileID: 7098921518429542307, guid: c4c158b1a2fa6f048ae897816b1c1415, type: 3}
 --- !u!4 &244492214
 Transform:
   m_ObjectHideFlags: 0

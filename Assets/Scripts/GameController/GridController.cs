@@ -51,7 +51,7 @@ namespace ObjectFarm
 
 
         /// <summary>
-        /// 绘制地块
+        /// 更新地块
         /// </summary>
         private void DrawTile()
         {
@@ -65,6 +65,9 @@ namespace ObjectFarm
                     {
                         // 绘制泥土
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_soil);
+                        // 更新植物
+                        UpdatePlant(x, y);
+
                     }
                     // 如果地块数据的状态为湿润
                     else if (gridData.landState == GridData.LandState.Moist)
@@ -83,6 +86,28 @@ namespace ObjectFarm
 
             });
         }
+
+        /// <summary>
+        /// 植物更新
+        /// </summary>
+        /// <param name="xCell"></param>
+        /// <param name="yCell"></param>
+        private void UpdatePlant(int xCell, int yCell)
+        {
+            // 获取植物格子数据
+            EasyGrid<GameObject> plantGrids = mModel.PlantGrids.Value;
+            // 如果xCell,yCell的植物数据不为空
+            if (plantGrids != null)
+            {
+                if (plantGrids[xCell, yCell] != null)
+                {
+                    // 就删除植物
+                    plantGrids[xCell, yCell].DestroySelf();
+                }
+            }
+        }
+
+
 
         #endregion
 

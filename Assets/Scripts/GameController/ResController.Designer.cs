@@ -1,4 +1,4 @@
-// Generate Id:0ce76959-095b-419f-bbfa-da55c002d400
+// Generate Id:98300762-d591-45d2-a607-cf2684d6f782
 using UnityEngine;
 
 namespace ObjectFarm
@@ -6,7 +6,7 @@ namespace ObjectFarm
 	public partial class ResController
 	{
 
-		public UnityEngine.GameObject Seed;
+		public UnityEngine.GameObject Plant;
 
 	}
 }
