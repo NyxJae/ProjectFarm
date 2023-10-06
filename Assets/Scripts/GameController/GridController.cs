@@ -26,6 +26,15 @@ namespace ObjectFarm
 
         #endregion
 
+        #region 地块相关字段
+        /// <summary>
+        /// 地块格子数据
+        /// </summary>
+        private EasyGrid<GridData> grids = null;
+
+
+        #endregion
+
 
         #region 生命周期函数
 
@@ -43,7 +52,25 @@ namespace ObjectFarm
                 }
 
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
-            // 绘制地块
+            // 注册事件当mModel.Data.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
+            mModel.Date.Register(newValue =>
+            {
+                // 获取地块数据
+                grids = mModel.Grids.Value;
+                // 所有湿润的地块变成已开垦
+                grids.ForEach((x, y, gridData) =>
+                {
+                    if (gridData.landState == GridData.LandState.Moist)
+                    {
+                        gridData.landState = GridData.LandState.Reclaimed;
+                    }
+                });
+                // 重新设置已触发事件
+                mModel.Grids.Value = grids;
+
+
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            // 绘制初始地块
             DrawTile();
 
         }
@@ -65,8 +92,7 @@ namespace ObjectFarm
                     {
                         // 绘制泥土
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_soil);
-                        // 更新植物
-                        UpdatePlant(x, y);
+
 
                     }
                     // 如果地块数据的状态为湿润
@@ -87,25 +113,6 @@ namespace ObjectFarm
             });
         }
 
-        /// <summary>
-        /// 植物更新
-        /// </summary>
-        /// <param name="xCell"></param>
-        /// <param name="yCell"></param>
-        private void UpdatePlant(int xCell, int yCell)
-        {
-            // 获取植物格子数据
-            EasyGrid<GameObject> plantGrids = mModel.PlantGrids.Value;
-            // 如果xCell,yCell的植物数据不为空
-            if (plantGrids != null)
-            {
-                if (plantGrids[xCell, yCell] != null)
-                {
-                    // 就删除植物
-                    plantGrids[xCell, yCell].DestroySelf();
-                }
-            }
-        }
 
 
 

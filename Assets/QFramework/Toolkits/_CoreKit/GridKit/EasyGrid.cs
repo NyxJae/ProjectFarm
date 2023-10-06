@@ -136,7 +136,7 @@ namespace QFramework.Example
                 }
             }
 
-            for (var x = mWidth; x < width; x++)
+            for (var x = mWidth;  x < width; x++)
             {
                 // y addition
                 for (var y = 0; y < height; y++)
@@ -215,9 +215,5 @@ namespace QFramework.Example
 
             mGrid = null;
         }
-
-
-
-
     }
 }
