@@ -185,6 +185,28 @@
                     "action": "TestTools",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91347526-280f-44fd-83ac-4cd24ebcf79a",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestTools",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5789f669-acfc-4f2f-a231-c5bee67313fa",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestTools",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

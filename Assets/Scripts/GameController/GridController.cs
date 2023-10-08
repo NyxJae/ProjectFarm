@@ -9,8 +9,6 @@ namespace ObjectFarm
     public partial class GridController : ViewController, IController
     {
 
-
-
         public IArchitecture GetArchitecture()
         {
             return ObjectFarmArchitecture.Interface;
@@ -113,12 +111,106 @@ namespace ObjectFarm
             });
         }
 
+        //
+        /// <summary>
+        /// 公开开垦地块方法
+        /// </summary>
+        /// <param name="cellPosition"></param>
+        public void Reclaimed(Vector3Int cellPosition)
+        {
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 如果地块数据不为空
+            if (grids != null)
+            {
+                // 如果需开垦地块的坐标在grids的范围内
+                if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
+                {
+                    // 如果地块数据的状态为泥土
+                    if (grids[cellPosition.x, cellPosition.y].landState == GridData.LandState.Soil)
+                    {
+                        // 将地块数据的状态改为湿润
+                        grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Reclaimed;
+                        // 重新设置已触发事件
+                        mModel.Grids.Value = grids;
+                    }
+                }
+            }
+        }
+        // 公开恢复泥土方法
+        public void ReSoilGrid(Vector3Int cellPosition)
+        {
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 如果地块数据不为空
+            if (grids != null)
+            {
+                // 如果需开垦地块的坐标在grids的范围内
+                if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
+                {
+                    // 设置土地状态为泥土
+                    grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Soil;
+                    // 设置土地种植状态为未种植
+                    grids[cellPosition.x, cellPosition.y].plantState = GridData.PlantState.None;
+                    mModel.Grids.Value = grids;  // 重新设置以触发事件
+                }
+            }
+        }
 
+        // 公开浇水方法
+        public void Water(Vector3Int cellPosition)
+        {
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 如果地块数据不为空
+            if (grids != null)
+            {
+                // 如果需开垦地块的坐标在grids的范围内
+                if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
+                {
+                    // 如果地块数据的状态为开垦
+                    if (grids[cellPosition.x, cellPosition.y].landState == GridData.LandState.Reclaimed)
+                    {
+                        // 将地块数据的状态改为湿润
+                        grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Moist;
+                        // 重新设置已触发事件
+                        mModel.Grids.Value = grids;
+                    }
+                }
+            }
+        }
 
+        // 公开播种方法
+        public void Plant(Vector3Int cellPosition)
+        {
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 如果地块数据不为空
+            if (grids != null)
+            {
+                // 如果需开垦地块的坐标在grids的范围内
+                if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
+                {
+                    // 如果地块数据的状态为开垦或者湿润,且土地种植状态为未种植
+                    if ((grids[cellPosition.x, cellPosition.y].landState == GridData.LandState.Reclaimed || grids[cellPosition.x, cellPosition.y].landState == GridData.LandState.Moist) && grids[cellPosition.x, cellPosition.y].plantState == GridData.PlantState.None)
+                    {
+                        // rescontroller 生成种子,链式方法 
+                        // 种子的位置是 cellCenter地块中点
+                        // 种子的父物体是 Tilemap.transform
+                        GameObject plant = ResController.Instance.Plant.Instantiate().Position((Vector2)Tilemap.GetCellCenterWorld(cellPosition)).Parent(Tilemap.transform);
+                        // 设置植物的地块坐标
+                        plant.gameObject.GetComponent<PlantController>().XCell = cellPosition.x;
+                        plant.gameObject.GetComponent<PlantController>().YCell = cellPosition.y;
+                        // 添加到植物地块数据中
+                        mModel.PlantGrids.Value[cellPosition.x, cellPosition.y] = plant;
+                        // 设置植物的地块数据
+                        grids[cellPosition.x, cellPosition.y].plantState = GridData.PlantState.Seed;
+                        mModel.Grids.Value = grids;  // 重新设置以触发事件
+                    }
+                }
+            }
+        }
 
         #endregion
-
-
-
     }
 }

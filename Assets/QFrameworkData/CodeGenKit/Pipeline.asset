@@ -20,11 +20,12 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/GameController
-    ClassName: ResController
+    ClassName: PlayerController
     Namespace: ObjectFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
-      partial class ResController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class PlayerController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:98300762-d591-45d2-a607-cf2684d6f782\r\nusing UnityEngine;\r\n\r\nnamespace
-      ObjectFarm\r\n{\r\n\tpublic partial class ResController\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.GameObject Plant;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:afc635c1-2e67-4880-9ca2-7e02459cfb77\r\nusing UnityEngine;\r\n\r\nnamespace
+      ObjectFarm\r\n{\r\n\tpublic partial class PlayerController\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t\tpublic ObjectFarm.GridController
+      GridManager;\r\n\r\n\t\tpublic ObjectFarm.GridController GridController;\r\n\r\n\t}\r\n}\r\n"
