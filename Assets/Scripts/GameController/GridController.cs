@@ -30,6 +30,11 @@ namespace ObjectFarm
         /// </summary>
         private EasyGrid<GridData> grids = null;
 
+        /// <summary>
+        /// 植物格子数据
+        /// </summary>
+        private EasyGrid<GameObject> plantGrids = null;
+
 
         #endregion
 
@@ -40,11 +45,16 @@ namespace ObjectFarm
         {
             // 获取model层
             mModel = this.GetModel<ObjectFarmModel>();
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 获取植物格子数据
+            plantGrids = mModel.PlantGrids.Value;
             // 注册事件当mModel.Grids.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
             mModel.Grids.Register(newValue =>
             {
                 if (newValue != null)
                 {
+
                     // 绘制地块
                     DrawTile();
                 }
@@ -53,8 +63,7 @@ namespace ObjectFarm
             // 注册事件当mModel.Data.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
             mModel.Date.Register(newValue =>
             {
-                // 获取地块数据
-                grids = mModel.Grids.Value;
+
                 // 所有湿润的地块变成已开垦
                 grids.ForEach((x, y, gridData) =>
                 {
@@ -90,7 +99,6 @@ namespace ObjectFarm
                     {
                         // 绘制泥土
                         Tilemap.SetTile(new Vector3Int(x, y, 0), land_soil);
-
 
                     }
                     // 如果地块数据的状态为湿润
@@ -131,7 +139,7 @@ namespace ObjectFarm
                     {
                         // 将地块数据的状态改为湿润
                         grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Reclaimed;
-                        // 重新设置已触发事件
+                        // 重新设置以触发地图重绘事件
                         mModel.Grids.Value = grids;
                     }
                 }
@@ -152,7 +160,8 @@ namespace ObjectFarm
                     grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Soil;
                     // 设置土地种植状态为未种植
                     grids[cellPosition.x, cellPosition.y].plantState = GridData.PlantState.None;
-                    mModel.Grids.Value = grids;  // 重新设置以触发事件
+                    // 重新设置以触发地图重绘事件
+                    mModel.Grids.Value = grids;
                 }
             }
         }
@@ -173,7 +182,7 @@ namespace ObjectFarm
                     {
                         // 将地块数据的状态改为湿润
                         grids[cellPosition.x, cellPosition.y].landState = GridData.LandState.Moist;
-                        // 重新设置已触发事件
+                        // 重新设置已触发地图重绘事件
                         mModel.Grids.Value = grids;
                     }
                 }
@@ -205,8 +214,34 @@ namespace ObjectFarm
                         mModel.PlantGrids.Value[cellPosition.x, cellPosition.y] = plant;
                         // 设置植物的地块数据
                         grids[cellPosition.x, cellPosition.y].plantState = GridData.PlantState.Seed;
-                        mModel.Grids.Value = grids;  // 重新设置以触发事件
                     }
+                }
+            }
+        }
+
+
+        // 公开收获方法
+        public void GetFruit(Vector3Int cellPosition)
+        {
+            // 获取地块数据
+            grids = mModel.Grids.Value;
+            // 如果地块数据不为空
+            if (grids != null)
+            {
+                // 如果需开垦地块的坐标在grids的范围内
+                if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
+                {
+                    // 如果植物格子数据的x,y的植物控制器组件的植物状态为成熟
+                    if (plantGrids[cellPosition.x, cellPosition.y].GetComponent<PlantController>() != null)
+                    {
+                        // 获取植物控制器组件的获取果实方法
+                        plantGrids[cellPosition.x, cellPosition.y].GetComponent<PlantController>().GetFruit();
+                        // 设置地块数据的种植状态为未种植
+                        grids[cellPosition.x, cellPosition.y].plantState = GridData.PlantState.None;
+                    }
+
+
+
                 }
             }
         }

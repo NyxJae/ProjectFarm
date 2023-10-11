@@ -33,13 +33,9 @@ namespace ObjectFarm
         /// </summary>
         private GridData grid = null;
 
+
         // 植物格子数据
         private EasyGrid<GameObject> plantGrids = null;
-
-        /// <summary>
-        /// 播种日期
-        /// </summary>
-        private DateTime starTime;
 
         /// <summary>
         /// 生长天数
@@ -66,20 +62,22 @@ namespace ObjectFarm
         [SerializeField]
         [Header("种子-成熟天数")]
         public int MatureTime = 4;
+        
 
 
         private void Start()
         {
             // 获取model层
             mModel = this.GetModel<ObjectFarmModel>();
-            // 获取start日期为播种日期
-            starTime = mModel.Date.Value;
+            // 获取grid数据
+            grid = mModel.Grids.Value[XCell, YCell];
+            // 获取植物格子数据
+            plantGrids = mModel.PlantGrids.Value;
 
             // 注册事件当mModel.Grids.Value发生变化时，执行以下代码,gameObject销毁后自动取消注册
             mModel.Grids.Register(newValue =>
             {
-                // 获取grid数据
-                grid = mModel.Grids.Value[XCell, YCell];
+
                 // 如果土地状态是潮湿的,并且当天可生长,就增加生长天数
                 if (grid.landState == GridData.LandState.Moist && isGrow)
                 {
@@ -130,5 +128,24 @@ namespace ObjectFarm
 
         }
 
+        // 公开获取果实方法
+        public void GetFruit()
+        {
+            // 如果xCell,yCell的植物数据不为空
+            if (plantGrids != null)
+            {
+                // 如果是成熟的
+                if (plantGrids[xCell, yCell].GetComponent<SpriteRenderer>().sprite == mature)
+                {
+                    // 就删除植物
+                    plantGrids[xCell, yCell].DestroySelf();
+                    // 就增加背包内果实数量
+                    mModel.FruitNum.Value++;
+
+
+                }
+            }
+
+        }
     }
 }

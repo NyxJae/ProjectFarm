@@ -33,6 +33,11 @@ namespace ObjectFarm
         /// </summary>
         public BindableProperty<EasyGrid<GameObject>> PlantGrids = new BindableProperty<EasyGrid<GameObject>>();
 
+        /// <summary>
+        /// 背包内果实数量
+        /// </summary>
+        public BindableProperty<int> FruitNum = new BindableProperty<int>();
+
 
         protected override void OnInit()
         {

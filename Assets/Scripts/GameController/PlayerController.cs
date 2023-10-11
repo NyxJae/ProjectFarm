@@ -39,10 +39,6 @@ namespace ObjectFarm
         [Tooltip("鼠标和角色的距离")]
         public float distanceBetweenMouseAndPlayer = 1f;
 
-        /// <summary>
-        /// 地块的数据
-        /// </summary>
-        private EasyGrid<GridData> grid = null;
 
         /// <summary>
         /// 将鼠标的世界坐标转换为Tilemap的坐标
@@ -101,6 +97,9 @@ namespace ObjectFarm
             GUI.Label(new Rect(10, 60, 200, 200), "K键:种植植物");
             GUI.Label(new Rect(10, 80, 200, 200), "L键:浇水");
             GUI.Label(new Rect(10, 100, 200, 200), "P键:过一天");
+            GUI.Label(new Rect(10, 120, 200, 200), "O键:获取果实");
+            // 显示背包内果实数量
+            GUI.Label(new Rect(10, 140, 200, 200), "背包内果实数量:" + mModel.FruitNum.Value);
 
 
 
@@ -166,8 +165,6 @@ namespace ObjectFarm
                 // 将鼠标的世界坐标转换为Tilemap的坐标
                 cellPosition = Tilemap.WorldToCell(mouseWorldPosition);
 
-
-
                 // 如果是 键盘的 J 键
                 if (controlName == "j")
                 {
@@ -195,7 +192,7 @@ namespace ObjectFarm
                 else if (controlName == "o")
                 {
                     // 获取果实
-                    Debug.Log("获取果实");
+                    GridController.GetFruit(cellPosition);
                 }
             }
         }
@@ -208,11 +205,12 @@ namespace ObjectFarm
         #region 私有方法 
 
         /// <summary>
-        /// 开垦地块
+        /// 使用工具
         /// </summary>
         /// <param name="cellPosition"> 地块的坐标</param>
         private void UseTools(Vector3Int cellPosition)
         {
+            // TODO: 各种工具各种功能
             // 开垦
             GridController.Reclaimed(cellPosition);
         }
