@@ -25,7 +25,7 @@ MonoBehaviour:
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ObjectFarm\r\n{\r\n\tpublic
       partial class PlayerController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:afc635c1-2e67-4880-9ca2-7e02459cfb77\r\nusing UnityEngine;\r\n\r\nnamespace
+    DesignerCode: "// Generate Id:a06ad738-5d28-410a-b8d3-4d1c8a7e0ecf\r\nusing UnityEngine;\r\n\r\nnamespace
       ObjectFarm\r\n{\r\n\tpublic partial class PlayerController\r\n\t{\r\n\r\n\t\tpublic
       UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t\tpublic ObjectFarm.GridController
-      GridManager;\r\n\r\n\t\tpublic ObjectFarm.GridController GridController;\r\n\r\n\t}\r\n}\r\n"
+      GridController;\r\n\r\n\t\tpublic ObjectFarm.toolsController ToolsController;\r\n\r\n\t}\r\n}\r\n"

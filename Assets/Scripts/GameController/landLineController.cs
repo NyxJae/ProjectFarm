@@ -21,7 +21,10 @@ namespace ObjectFarm
             Tilemap = GameObject.FindObjectOfType<Tilemap>();
         }
 
-        // 鼠标移动回调事件
+        /// <summary>
+        /// 跟随鼠标移动回调事件,当MouseMove动作被触发时调用
+        /// </summary>
+        /// <param name="context"></param>
         public void OnMouseMove(InputAction.CallbackContext context)
         {
             // 获取鼠标的坐标,转换为世界坐标
@@ -34,6 +37,7 @@ namespace ObjectFarm
             transform.position = cellCenter;
         }
 
+        // Qframework 实现架构接口的方法
         public IArchitecture GetArchitecture()
         {
             return ObjectFarmArchitecture.Interface;

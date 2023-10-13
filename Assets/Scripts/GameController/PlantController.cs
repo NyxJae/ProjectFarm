@@ -6,6 +6,7 @@ namespace ObjectFarm
 {
     public partial class PlantController : ViewController, IController
     {
+        // Qframework 实现架构接口的方法
         public IArchitecture GetArchitecture()
         {
             // 返回架构
@@ -62,7 +63,7 @@ namespace ObjectFarm
         [SerializeField]
         [Header("种子-成熟天数")]
         public int MatureTime = 4;
-        
+
 
 
         private void Start()
@@ -128,7 +129,9 @@ namespace ObjectFarm
 
         }
 
-        // 公开获取果实方法
+        /// <summary>
+        /// 公开获取果实方法
+        /// </summary>
         public void GetFruit()
         {
             // 如果xCell,yCell的植物数据不为空

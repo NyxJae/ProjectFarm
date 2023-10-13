@@ -38,6 +38,9 @@ namespace ObjectFarm
         /// </summary>
         public BindableProperty<int> FruitNum = new BindableProperty<int>();
 
+        // 当前物品编号
+        public BindableProperty<int> ItemNum = new BindableProperty<int>();
+
 
         protected override void OnInit()
         {
@@ -52,6 +55,8 @@ namespace ObjectFarm
             PlantGrids.Value = new EasyGrid<GameObject>(width, height);
 
             #endregion
+
+
             #region 地图数据初始化
             // 为Grids.Value注册一个比较器，只要改了就会触发事件
             Grids.WithComparer((EasyGrid<GridData> a, EasyGrid<GridData> b) =>
@@ -61,13 +66,15 @@ namespace ObjectFarm
                 });
 
             // 设置地图大小
-            Grids.Value = new EasyGrid<GridData>(width,height);
+            Grids.Value = new EasyGrid<GridData>(width, height);
 
             // 遍历所有的格子，初始化为泥土
             Grids.Value.ForEach((x, y, gridData) =>
             {
                 Grids.Value[x, y] = new GridData();
             });
+
+            // 
             #endregion
 
             #region 日期初始化
@@ -80,6 +87,8 @@ namespace ObjectFarm
             });
             #endregion
 
+            // 当前物品编号初始化
+            ItemNum.Value = 0;
 
 
         }

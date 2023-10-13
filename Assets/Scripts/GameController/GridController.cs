@@ -132,6 +132,7 @@ namespace ObjectFarm
             if (grids != null)
             {
                 // 如果需开垦地块的坐标在grids的范围内
+                // TODO:有BUG,应该是0-cellPosition.x
                 if (grids.Width > cellPosition.x && grids.Height > cellPosition.y)
                 {
                     // 如果地块数据的状态为泥土

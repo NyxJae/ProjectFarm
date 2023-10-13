@@ -1,6 +1,6 @@
 {
     "Id": "",
-    "Version": "v1.0.93",
+    "Version": "v1.0.98",
     "Type": 0,
     "AccessRight": 0,
     "DownloadUrl": "",
@@ -11,10 +11,10 @@
     ],
     "DocUrl": "https://liangxiegame.com",
     "Readme": {
-        "version": "v1.0.93",
-        "content": "QFramework.cs 支持 Godot",
+        "version": "v1.0.98",
+        "content": "SerializedProperty 增加 DrawProperties API",
         "author": "liangxie",
-        "date": "2023 年 09 月 26 日 15:17",
+        "date": "2023 年 10 月 12 日 20:43",
         "PackageId": ""
     }
 }
